@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">
+	<head>
+		<?php Load::lib("html") ?>
+		<?php Load::lib("formato") ?>
+		<meta http-equiv='Content-type' content='text/html; charset=<?php echo APP_CHARSET ?>' />
+		<title><?= PROYECTO_NOMBRE ?></title>
+		
+		<?= stylesheet_link_tag('green_menu/reset') ?>
+		<?= stylesheet_link_tag('green_menu/green_menu') ?>
+		<?= stylesheet_link_tag('green_menu/invalid') ?>
+		<?= stylesheet_link_tag('botones') ?>
+        
+        <?= View::partial("jquery",false,'template: south-street, version: 14'); ?>
+        <?= javascript_include_tag('base') ?>
+        <?= javascript_include_tag('kumbia/validations') ?>
+        <?= javascript_include_tag('green_menu/menu') ?>
+        <?= javascript_include_tag('green_menu/base') ?>
+	</head>
+	<body>
+		<!-- Wrapper for the radial gradient background -->
+		<div id="sidebar">
+			<div id="sidebar-wrapper">
+				<br />
+				<div id="profile">
+					<div style="font-size: 20px; color: #F0F0F0;" align="left">
+						<?= Formato::capital(Session::get("tipo_usuario")); ?>
+					</div> 
+					<br />
+					<div id="username" align="right">
+						<?php
+							if(Session::get("nombre_completo")){
+								echo Session::get("nombre_completo");
+							}
+							else{
+								echo "";
+							}
+						?>
+					</div>
+					<?php if(Session::get("tipo_usuario")){ ?>
+					<br />
+					<div style="font-size: 12px; color: #F0F0F0;" align="right">
+						<?= Html::link("general/cerrar", "Cerrar Sesión") ?>
+					</div>
+					<?php } ?>
+				</div>
+				<br /><br />
+				<!-- MENU ESTILO GREEN -->
+				<?php Load::lib("windows") ?>
+				<?php 
+					$windows = new Windows("green_menu");
+					$windows -> renderizar();
+				?> 
+				<!-- FIN MENU ESTILO GREEN -->
+			</div>
+		</div> <!-- End #sidebar -->
+		<div id="main-content">
+			<div id="principal">
+				<?php View::content(); ?>
+			</div>
+			<div id="footer">
+				<small>
+					&#169; Copyright 2011 <?= PROYECTO_NOMBRE ?> | Desarrollado por 
+					<a target="_blank" href="<?= AUTOR_URL ?>"><?= AUTOR_NOMBRE ?></a> |
+					<a href="#">Arriba</a>
+				</small>
+			</div>
+		</div>
+	</body>
+</html>

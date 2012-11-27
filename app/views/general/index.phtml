@@ -1,0 +1,28 @@
+<?php Load::lib("html"); ?>
+<?php Load::lib("formato"); ?>
+<div class="content-box">
+	<div class="content-box-header">
+		<h3>Página Principal</h3>
+		<ul class="content-box-tabs">
+			<li>
+				<?= Html::linkAjax("general/index", "Nuevo Profesor", "contenido","id: default-tab") ?>
+			</li>
+			<li>
+				<?= Html::linkAjax("general/link1", "Profesores", "contenido") ?>
+			</li>
+			<li>
+				<?= Html::linkAjax("general/link1", "Buscar", "contenido") ?>
+			</li>
+		</ul>
+		<div class="clear"></div>
+	</div>
+	<div class="content-box-content"> 
+		<div id="contenido">
+			<div id="notificacion"></div>
+			<div id="formatable">
+				 <?= View::partial("blank") ?>
+				 Ramiro Alonso Vera Contreras
+			</div>
+		</div>
+	</div>
+</div>

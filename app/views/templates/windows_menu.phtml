@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">
+	<head>
+		<meta http-equiv='Content-type' content='text/html; charset=<?php echo APP_CHARSET ?>' />
+		<title><?= PROYECTO_NOMBRE ?></title>
+		<link rel="shortcut icon" href="http://www.amecasoft.com.mx/favicon.ico" type="image/x-icon" /> 
+		<meta http-equiv="imagetoolbar" content="no" />
+		
+		<?= stylesheet_link_tag('style') ?>
+		
+		<?= stylesheet_link_tag('windows_menu/reset') ?>
+		<?= stylesheet_link_tag('formato') ?>
+		<?= stylesheet_link_tag('windows_menu/invalid') ?>
+		
+		
+		<?= stylesheet_link_tag('windows_menu/windows_menu') ?>
+		<?= stylesheet_link_tag('amecasoft') ?>
+		
+		<?= stylesheet_link_tag('botones') ?>
+        
+        <?= View::partial("jquery",false,'template: ui-darkness, version: 13'); ?>
+        
+        <?= javascript_include_tag('kumbia/validations') ?>
+        <?= javascript_include_tag('windows_menu/menu') ?>
+        <?= javascript_include_tag('windows_menu/base') ?>
+		
+		<?= javascript_include_tag('amecasoft') ?>
+		<?= javascript_include_tag("windows_menu/windows_menu") ?>
+		
+  		<?php Load::lib("html") ?>
+  		<?php Load::lib("formulario") ?>
+        
+	</head>
+	<body style="padding: 0px;">
+	<!-- MENU ESTILO WINDOWS -->
+	<?php Load::lib("windows") ?>
+	<?php 
+		$windows = new Windows("windows_menu");
+		$windows -> renderizar();
+	?> 
+	<!-- FIN MENU ESTILO WINDOWS -->
+	<div id="main-content" style="margin-left: 210px; padding-top:10px; posicion: relative;">
+			<div id="principal">
+				<?php View::content(); ?>
+			</div>
+			<div id="footer">
+				<small>
+					<div style="float: left;">
+						&nbsp; Copyright 2012 &#169; Punto de Venta
+					</div>
+					Desarollado por <a target="_blank" href="www.amecasoft.com.mx">Amecasoft S.A. de C.V.</a>
+				</small>
+			</div>
+		</div>
+</body>
+</html>

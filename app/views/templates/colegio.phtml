@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">
+	<head>
+		<?php Load::lib("html") ?>
+		<?php Load::lib("formato") ?>
+		<?= View::helpers("menux") ?>
+		<?php
+		
+			$menu = new Menux("principal");
+			
+			if(Session::get("tipo_usuario")=="ADMINISTRADOR" || Session::get("tipo_usuario")=="DIRECTOR"){
+				$menu -> seccion("Catálogos");
+				$menu -> link("Periodos","general/periodos","contenido");
+				$menu -> link("Tipos de Incidencia","general/incidencias");
+				$menu -> link("Items de Evaluación","general/items");
+				$menu -> link("Asignaturas","general/asignaturas");
+				
+				$menu -> seccion("Profesores");
+				$menu -> link("Registrar Profesor","profesores/registro");
+				$menu -> link("Lista de Profesores","profesores/reporte");
+				$menu -> link("Buscar Profesor","profesores/buscar");
+				
+				$menu -> seccion("Alumnos");
+				$menu -> link("Registrar Alumno","alumnos/registro");
+				$menu -> link("Lista de Alumnos","alumnos/reporte");
+				$menu -> link("Buscar Alumno","alumnos/buscar");
+				
+				$menu -> seccion("Cursos");
+				$menu -> link("Registrar Curso","cursos/registro");
+				$menu -> link("Lista de Cursos","cursos/reporte");
+				$menu -> link("Buscar Curso","cursos/buscar");
+			}
+			
+			if(Session::get("tipo_usuario")=="ADMINISTRADOR" || Session::get("tipo_usuario")=="DIRECTOR" || Session::get("tipo_usuario")=="PROFESOR"){
+				if(Session::get("tipo_usuario")=="PROFESOR"){
+					$menu -> seccion("Cursos");
+					$menu -> link("Lista de Cursos","cursos/reporteProfesor");
+				}
+				
+				$menu -> seccion("Informe de Asistencia");
+				$menu -> link("Registrar","cursos/registroAsistencia");
+				$menu -> link("Modificar","cursos/consultaAsistencia");
+				
+				$menu -> seccion("Informe de Evaluación");
+				$menu -> link("Registrar","cursos/registroEvaluacion");
+				$menu -> link("Modificar","cursos/consultaEvaluacion");
+				
+				$menu -> seccion("Informes");
+				$menu -> link("Enviar Informes","notificaciones/enviando");
+				$menu -> link("Enviar Email","cursos/envioCorreo");		
+			}
+			
+			if(Session::get("tipo_usuario")=="ADMINISTRADOR"){
+				$menu -> seccion("Importar / Exportar");
+				$menu -> link("Importar","backup/importar");
+				$menu -> link("Exportar","backup/exportar");
+				
+				$menu -> seccion("Copias de Seguridad");
+				$menu -> link("Crear","backup/crear","SIN AJAX");
+				$menu -> link("Restaurar","backup/restaurando");	
+			}
+			
+			$menu -> seccion("&nbsp;");
+			
+		?>
+		<meta http-equiv='Content-type' content='text/html; charset=<?php echo APP_CHARSET ?>' />
+		<title><?= PROYECTO_NOMBRE ?></title>
+		<link rel="shortcut icon" href="http://www.colegiobeatrizdesilva.com/favicon.ico" />
+		
+		<?= stylesheet_link_tag('green_menu/reset') ?>
+		<?= stylesheet_link_tag('green_menu') ?>
+		<?= stylesheet_link_tag('green_menu/invalid') ?>
+		<?= stylesheet_link_tag('botones') ?>
+        
+        <?= View::partial("jquery",false,'template: south-street, version: 14'); ?>
+        <?= javascript_include_tag('base') ?>
+        <?= javascript_include_tag('kumbia/validations') ?>
+        <?= javascript_include_tag('green_menu/menu') ?>
+        <?= javascript_include_tag('green_menu/base') ?>
+	</head>
+	<body>
+		<!-- Wrapper for the radial gradient background -->
+		<div id="sidebar">
+			<div id="sidebar-wrapper">
+				<br />
+				<div id="profile">
+					<div style="font-size: 20px; color: #F0F0F0;" align="left">
+						<?= Formato::capital(Session::get("tipo_usuario")); ?>
+					</div> 
+					<br />
+					<div id="username" align="right">
+						<?php
+							if(Session::get("nombre_completo")){
+								echo Session::get("nombre_completo");
+							}
+							else{
+								echo "";
+							}
+						?>
+					</div>
+					<?php if(Session::get("tipo_usuario")){ ?>
+					<br />
+					<div style="font-size: 12px; color: #F0F0F0;" align="right">
+						<?= Html::link("general/cerrar", "Cerrar Sesión") ?>
+					</div>
+					<?php } ?>
+				</div>
+				<br /><br />
+				<?= $menu -> html(); ?>
+			</div>
+		</div> <!-- End #sidebar -->
+		<div id="main-content">
+			<div id="principal">
+				<?php View::content(); ?>
+			</div>
+			<div id="footer">
+				<small>
+					&#169; Copyright 2011 <?= PROYECTO ?> | Desarrollado por 
+					<a target="_blank" href="<?= URL_DESAROLLADOR ?>"><?= DESARROLLADOR ?></a> |
+					<a href="#">Arriba</a>
+				</small>
+			</div>
+		</div>
+	</body>
+</html>

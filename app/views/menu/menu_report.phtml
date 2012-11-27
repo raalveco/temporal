@@ -1,0 +1,68 @@
+<?php Load::lib("html"); ?>
+<?php Load::lib("formato"); ?>
+<?php View::partial("ajax"); ?>
+<?= javascript_include_tag('base') ?>
+<div class="content-box">
+	<div class="content-box-header">
+		<?php $ventana = Ventana::consultar("link = '".$controller_name."/".$action_name."'"); ?>
+		<h3><?= $ventana -> texto ?></h3>
+		<?php $solapas = $ventana -> solapas(); ?>
+		<?php if($solapas){ ?>
+		<ul class="content-box-tabs">
+			<?php foreach($solapas as $solapa){ ?>
+			<li>
+				<?= Html::linkAjax($solapa -> link, $solapa -> texto, $solapa -> link == $ventana -> link ? $ventana-> contenedor : $solapa -> contenedor, $solapa -> link == $ventana -> link ? "id: default-tab" : "") ?>
+			</li>
+			<?php } ?>
+		</ul>
+		<?php } ?>
+		<div class="clear"></div>
+	</div>
+	<div class="content-box-content"> 
+		<div id="contenido">
+			<div id="notificacion"></div>
+			<div id="formatable">
+				<table width="100%">
+					<thead>
+						<tr>
+							<th>Titulo</th>
+							<th>Abierto</th>
+							<th>Activo</th>
+							<th></th>
+							<th></th>
+						</tr>
+					</thead>
+					<tfoot>
+						<tr>
+							<td colspan="3">
+							<div class="clear">
+							</div>
+							</td>
+						</tr>
+					</tfoot>
+					<tbody>
+						<?php $i=0; if($menus) foreach($menus as $menu){ $i++; ?>
+						<tr>
+							<td>
+								<?= $menu -> texto ?>
+							</td>
+							<td width="100">
+								<?= $menu -> abierto ?>
+							</td>
+							<td width="100">
+								<?= $menu -> activo ?>
+							</td>
+							<td width="20">
+								<?= Html::linkAjax("menu/consulta/".$menu -> id."/4", Html::imagen("icons/files.png","Expediente del Alumno",20,20),"principal") ?>
+							</td>
+							<td width="20">
+								<?= Html::linkAjax("alumnos/eliminando/".$menu -> id, Html::imagen("icons/delete.png","Eliminar Registro",20,20),"notificacion") ?>
+							</td>
+						</tr>
+						<?php } ?>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

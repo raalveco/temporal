@@ -1,0 +1,10 @@
+<?php
+    if($mensaje){
+        switch($msg){
+            case "success": echo Flash::success($mensaje)."<br/>"; break;
+            case "error": echo Flash::error($mensaje)."<br/>"; break;
+            case "notice": echo Flash::notice($mensaje)."<br/>"; break;
+            case "warning": echo Flash::warning($mensaje)."<br/>"; break;    
+        }
+    }
+?>
