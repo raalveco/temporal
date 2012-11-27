@@ -1,0 +1,36 @@
+*** Version 0.0 ***
+# 15/06/2011 Framework KumbiaPHP Spirit 1.0b1 Original
+
+*** Version 0.1 ***
+# 20/06/2011 Integracion: Framework JQuery 1.4.2.
+# 24/06/2011 Integracion: Plugin JQuery UI 1.8.13.
+# 22/06/2011 Integracion: Plugin JQuery Forms, para el envio de formularios con Ajax.
+# 22/06/2011 Integracion: Plugin JQuery Form Validate, para la validacion de formularios.
+
+# 17/06/2011 Libreria: Clase Formato.
+# 18/06/2011 Libreria: Clase Html.
+# 23/06/2011 Libreria: Clase Formulario.
+# 21/06/2011 Libreria: Clase Ajax.
+
+# 16/06/2011 Mantenimiento: Modificaciones al helpers.php, en link_to y img_tag para que puedan aceptar links o imagenes externas.
+# 21/06/2011 Mantenimiento: Modificaciones al view.php para ayudar al problema del ISO-8859-1.
+# 29/06/2011 Mantenimiento: Modificaciones al active_record_base.php para mejorar la compatibilidad con Php5.3. ereg y ereg_replace.
+# 30/06/2011 Mantenimiento: Modificaciones al model_base.php agregando nuevos metodos que seran agregados a todos los modelos.
+
+# 25/06/2011 Ejemplos: Probando la funcionalidad de la version.
+
+# 30/06/2011 Mantenimiento: Reparaciones al model_base.php ya que en versiones inferiores a 5.3 no funcionaba.
+# 11/07/2011 Mantenimiento: Modificaciones al Core, archivo kumbia.php y agregado functions.php que es donde se agrega la get_called_class para versiones inferiores al 5.3.
+
+# 05/07/2011 Helper: Clase Menu. Que contiene la estructura logica del menu.
+# 14/07/2011 Mantenimiento: Mejoras en la clase Formato, para que convierta a mayusculas y minusculas letras con tildes.
+# 14/07/2011 Mantenimiento: Mejoras en la clase Formato, se agrega la funcion Formato::noTildes($texto), para eliminar tildes a una palabra.
+
+# 09/08/2011 Trabajando con nuevas Ramas o Branch.
+# 11/08/2011 Agregada el vendor y libreria al core para el manejo de Zips (PclZip)
+# 11/08/2011 Agregada la opcion de crear un backup de la aplicacion (Solo archivos, falta Base de Datos)
+# 12/08/2011 Agregado el Plugin de FancyBox para dialogos.
+# 18/08/2011 Agregado el Plugin de JCrop para recortar imagenes.
+
+# 08/09/2011 Plugin para la calificacion con estrellas.
+# 12/09/2011 Archivo de constantes.ini y cargado de las mismas en el bootstrap
